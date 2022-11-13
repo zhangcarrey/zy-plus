@@ -1,7 +1,6 @@
 <script setup lang="ts">
-const a = { a: 111 }
-if (true) {
-}
+const a =1
+
 </script>
 
 <template>

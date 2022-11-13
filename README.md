@@ -53,7 +53,7 @@ declare module '*.vue' {
 
 ## 3.BEM 规范
 
-## 4. Eslint 配置
+## 4. Eslint
 
 使用 vscode 安装 volar 和 eslint 插件
 
@@ -78,7 +78,7 @@ pnpm i @vue/eslint-config-typescript -D -w
 
 .eslintrc.js .eslintignore 配置
 
-## 5. prettier 配置
+## 5. prettier
 
 .prettierrc.js .prettierignore 安装 vscode prettier 插件
 vscode 首选项设置:
@@ -88,3 +88,15 @@ vscode 首选项设置:
 
 > git 时提示 warning: LF will be replaced by CRLF
 > 解决办法： git config --global core.autocrlf false 设置为默认不转义
+
+## 6. husky
+增加eslint script命令
+```
+"lint": "eslint packages play --fix --ext .ts,.tsx,.vue,.js,.jsx --quiet "
+```
+安装 husky 和lint
+```
+pnpm install mrm husky lint-staged -w -D
+npx mrm lint-staged
+```
+

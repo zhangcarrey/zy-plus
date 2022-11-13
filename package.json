@@ -4,7 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "pnpm -C play dev"
+    "dev": "pnpm -C play dev",
+    "lint": "eslint packages play --fix --ext .ts,.tsx,.vue,.js,.jsx --quiet ",
+    "prepare": "husky install"
   },
   "keywords": [],
   "author": "",
@@ -15,6 +17,9 @@
     "@vue/eslint-config-typescript": "^11.0.2",
     "eslint": "^8.27.0",
     "eslint-plugin-vue": "^9.7.0",
+    "husky": "^8.0.2",
+    "lint-staged": "^13.0.3",
+    "mrm": "^4.1.13",
     "typescript": "^4.8.4",
     "vue": "^3.2.41"
   },
@@ -22,5 +27,16 @@
     "@zy-plus/components": "workspace:^1.0.0",
     "@zy-plus/theme-chalk": "workspace:^1.0.0",
     "@zy-plus/utils": "workspace:^1.0.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,vue,ts,tsx}": [
+      "pnpm lint",
+      "git add"
+    ]
   }
 }
