@@ -1,6 +1,5 @@
 <script setup lang="ts">
-const a =1
-
+const a = 1
 </script>
 
 <template>

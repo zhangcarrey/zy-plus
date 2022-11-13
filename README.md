@@ -90,13 +90,31 @@ vscode 首选项设置:
 > 解决办法： git config --global core.autocrlf false 设置为默认不转义
 
 ## 6. husky
-增加eslint script命令
+
+增加 eslint script 命令
+
 ```
 "lint": "eslint packages play --fix --ext .ts,.tsx,.vue,.js,.jsx --quiet "
 ```
-安装 husky 和lint
+
+安装 husky 和 lint, 使用 mrm 会自动添加 prepare 命令，自动生成 pre-commit 文件等
+
 ```
 pnpm install mrm husky lint-staged -w -D
 npx mrm lint-staged
 ```
 
+修改 husky 和 lint-staged 命令
+
+```
+# 生成husky目录文件
+"prepare": "husky install"
+```
+
+## 7. 代码提交检测
+
+```sh
+# $1 字符需要自己添加到配置文件中 .husky/commit-msg
+pnpm install @commitlint/cli @commitlint/config-conventional -D -w
+npx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"
+```
