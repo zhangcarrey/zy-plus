@@ -147,3 +147,17 @@ https://xicons.org/#/
 # play目录下
 pnpm i @vicons/ionicons5
 ```
+
+## 9. vitepress 搭建文档
+
+在文档中引用组件,需要增加配置文件 vite.config.ts
+
+```ts
+import { defineConfig } from 'vite'
+import DefineOptions from 'unplugin-vue-define-options/vite'
+
+// https://vitejs.dev/config/
+export default defineConfig({
+  plugins: [DefineOptions()]
+})``
+```

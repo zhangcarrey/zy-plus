@@ -6,7 +6,8 @@
   "scripts": {
     "dev": "pnpm -C play dev",
     "lint": "eslint packages play --fix --ext .ts,.tsx,.vue,.js,.jsx --quiet ",
-    "prepare": "husky install"
+    "prepare": "husky install",
+    "docs:dev": "pnpm -C docs dev"
   },
   "keywords": [],
   "author": "",
