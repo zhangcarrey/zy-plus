@@ -118,3 +118,32 @@ npx mrm lint-staged
 pnpm install @commitlint/cli @commitlint/config-conventional -D -w
 npx husky add .husky/commit-msg "npx --no-install commitlint --edit $1"
 ```
+
+配置 commitlint.config.js
+
+## 遇到的问题
+
+1. unplugin-vue-define-options 插件 使用 defineOptions 报错问题
+
+- tsconfig.json 中配置
+
+```json
+ "types": ["unplugin-vue-define-options/macros-global" /* ... */]
+```
+
+- eslint 中配置
+
+```js
+globals: {
+  defineOptions: 'writable'
+}
+```
+
+## 8. svg 图标
+
+https://xicons.org/#/
+
+```sh
+# play目录下
+pnpm i @vicons/ionicons5
+```

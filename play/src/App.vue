@@ -1,9 +1,12 @@
 <script setup lang="ts">
-const a = 1
+import Icon from '@zy-plus/components/icon/index'
+import { Alarm } from '@vicons/ionicons5'
+console.log(Icon)
 </script>
 
 <template>
-  <p>测试</p>
+  <z-icon :color="'red'" size="40"><Alarm></Alarm></z-icon>
+  <z-icon :color="'yellow'" size="40"><Alarm></Alarm></z-icon>
 </template>
 
 <style scoped></style>

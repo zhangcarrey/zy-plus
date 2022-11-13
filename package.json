@@ -22,7 +22,9 @@
     "husky": "^8.0.2",
     "lint-staged": "^13.0.3",
     "mrm": "^4.1.13",
+    "sass": "^1.56.1",
     "typescript": "^4.8.4",
+    "unplugin-vue-define-options": "^0.12.7",
     "vue": "^3.2.41"
   },
   "dependencies": {
