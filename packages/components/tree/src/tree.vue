@@ -6,6 +6,7 @@
       :node="node"
       :expanded="isExpanded(node)"
       :style="{ paddingLeft: `${node.level * 16}px` }"
+      :loading-keys="loadingKeyRef"
       @toggle="toggleExpand"
     ></z-tree-node>
   </div>
@@ -119,19 +120,39 @@ function isExpanded(node: TreeNode): boolean {
   return expandedKeysSet.value.has(node.key)
 }
 
-function collapse(key: Key) {
-  expandedKeysSet.value.delete(key)
+const loadingKeyRef = ref(new Set<Key>())
+
+function triggerLoading(node:TreeNode) {
+  if (!node.children.length && !node.isLeaf) {
+    const loadingKeys = loadingKeyRef.value
+    if (!loadingKeys.has(node.key)) {
+      loadingKeys.add(node.key)
+      const onLoad = props.onLoad
+      if (onLoad) {
+        onLoad(node.rawNode).then(children => {
+          node.rawNode.children = children
+          node.children = createTree(children, node)
+          loadingKeys.delete(node.key)
+        })
+      }
+    }
+  }
 }
 
-function expand(key: Key) {
-  expandedKeysSet.value.add(key)
+function collapse(node: TreeNode) {
+  expandedKeysSet.value.delete(node.key)
+}
+
+function expand(node: TreeNode) {
+  expandedKeysSet.value.add(node.key)
+  triggerLoading(node)
 }
 
 function toggleExpand(node: TreeNode) {
-  if (expandedKeysSet.value.has(node.key)) {
-    collapse(node.key)
+  if (expandedKeysSet.value.has(node.key) && !loadingKeyRef.value.has(node.key)) {
+    collapse(node)
   } else {
-    expand(node.key)
+    expand(node)
   }
 }
 </script>

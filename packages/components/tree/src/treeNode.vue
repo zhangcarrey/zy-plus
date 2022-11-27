@@ -9,7 +9,8 @@
         ]"
       >
         <z-icon size="25" color="orange" @click="toggleHandle">
-          <switcher></switcher>
+          <switcher v-if="!isLoading"></switcher>
+          <Loading v-else></Loading>
         </z-icon>
       </span>
       <span>{{ node?.label }}</span>
@@ -19,10 +20,11 @@
 
 <script setup lang="ts">
 import { createNamespace } from '@zy-plus/utils/create'
-import { ref } from 'vue'
+import { ref, computed } from 'vue'
 import { TreeNode, treeNodeEmits, treeNodeProps } from './tree'
 import ZIcon from '@zy-plus/components/icon'
 import Switcher from './icon/Switcher'
+import Loading from './icon/Loading'
 
 const bem = createNamespace('tree-node')
 defineOptions({
@@ -35,6 +37,11 @@ const emit = defineEmits(treeNodeEmits)
 function toggleHandle() {
   emit('toggle', node.value as TreeNode)
 }
+
+const isLoading = computed(() => {
+  return props.loadingKeys.has(props.node.key)
+})
+
 </script>
 
 <style lang="scss" scoped></style>

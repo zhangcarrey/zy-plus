@@ -1,12 +1,21 @@
 @use 'mixins/mixins' as *;
+
+@keyframes transform {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 @include b('icon') {
   height: 1em;
   width: 1em;
   line-height: 1em;
   display: inline-block;
   vertical-align: middle;
-  svg {
-    height: 1em;
-    width: 1em;
+  svg.loading {
+    animation: transform 1s linear;
   }
 }

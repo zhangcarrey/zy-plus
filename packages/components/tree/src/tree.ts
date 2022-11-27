@@ -36,6 +36,10 @@ export const treeProps = {
   childrenField: {
     type: String,
     default: 'children'
+  },
+  onLoad: {
+    type: Function as PropType<(node:TreeOption) =>Promise<TreeOption[]>>,
+    required: true
   }
 } as const
 
@@ -47,8 +51,12 @@ export const treeNodeProps = {
   expanded: {
     type: Boolean,
     default: false
+  },
+  loadingKeys: {
+    type: Object as PropType<Set<Key>>,
+    required: true
   }
-}
+} as const
 
 export const treeNodeEmits = {
   toggle: (node: TreeNode) => node
